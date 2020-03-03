@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Cats Home!</h1>
-</body>
-</html>
+{% extends "cats/base.html" %} {% block content %} {% for cat in cats %}
+
+<article class="media content-section">
+    <div class="media-body">
+        <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
+        <p class="article-content"><img src="{{ cat.photo }}" alt="{{ cat.name }}"> {{ post.content }}{{ location }}</p>
+    </div>
+</article>
+
+{% endfor %} {% endblock content %}
