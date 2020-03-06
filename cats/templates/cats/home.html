@@ -1,23 +1,28 @@
 {% extends "cats/base.html" %} {% block content %}
 <p align="center">
     <iframe height=480 width=80% src="https://www.google.com/maps/embed/v1/view?key=
-    &center=37.78197479248047,-122.4074478149414
-    &zoom=15" allowfullscreen>
-</iframe>
+    &center=37.781975,-122.407448
+    &zoom=18" allowfullscreen>
+    </iframe>
 </p>
 
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8">
             {% for cat in cats %}
-
             <article class="media content-section">
                 <div class="media-body">
+                    <p class="article-content"><img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"></p>
                     <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
-                    <p class="article-content"><img src="{{ cat.photo }}" alt="{{ cat.name }}"> {{ post.content }}{{ location }}</p>
+                    <h4>
+                        <b>Age:</b> {{ cat.age }}<br>
+                        <b>Breed:</b> {{ cat.breed }}<br>
+                        <b>Color:</b> {{ cat.color }}<br>
+                        <b>Location:</b> {{ cat.latitude }}, {{ cat.longitude }}<br>
+                        <b>Available:</b> {{ cat.available }}
+                    </h4>
                 </div>
             </article>
-
             {% endfor %}
         </div>
     </div>
