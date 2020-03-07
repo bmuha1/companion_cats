@@ -4,7 +4,7 @@ from .models import Cat
 
 def home(request):
     context = {
-        'cats': Cat.objects.all(),
+        'cats': Cat.objects.all()
     }
     return render(request, 'cats/home.html', context)
 
