@@ -1,0 +1,1 @@
+web: gunicorn companion_cats.wsgi
