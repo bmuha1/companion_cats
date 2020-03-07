@@ -25,7 +25,7 @@ SECRET_KEY = ')6#5!ee2w&(3!w3^e$x4b0ux253p-$+4fgp6!a0l#mrrqtolx*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['companion-cats.herokuapp.com']
 
 
 # Application definition
