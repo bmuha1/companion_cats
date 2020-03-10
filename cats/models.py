@@ -6,7 +6,6 @@ class Cat(models.Model):
     photo = models.CharField(max_length=100)
     age = models.IntegerField()
     breed = models.CharField(max_length=50)
-    color = models.CharField(max_length=20)
     latitude = models.DecimalField(max_digits=8, decimal_places=6)
     longitude = models.DecimalField(max_digits=9, decimal_places=6)
     available = models.BooleanField(default=True)

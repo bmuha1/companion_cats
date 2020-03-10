@@ -1,12 +1,4 @@
 {% extends "cats/base.html" %} {% block content %}
-<!--
-<p align="center">
-    <iframe height=480 width=80% src="https://www.google.com/maps/embed/v1/view?key=AIzaSyD1VCRPNA6NCmy_CH72LmiexTlEjOaYNPA
-    &center=37.781975,-122.407448
-    &zoom=15" allowfullscreen>
-    </iframe>
-</p>
--->
 
 <main role="main" class="container">
     <div class="row">
@@ -19,7 +11,6 @@
                     <h4>
                         <b>Age:</b> {{ cat.age }}<br>
                         <b>Breed:</b> {{ cat.breed }}<br>
-                        <b>Color:</b> {{ cat.color }}<br>
                         <b>Location:</b> {{ cat.latitude }}, {{ cat.longitude }}<br>
                         <b>Available:</b> {{ cat.available }}
                     </h4>
