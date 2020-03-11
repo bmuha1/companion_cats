@@ -368,7 +368,7 @@ def add(request):
         cat['latitude'] = c['latitude']
         cat['longitude'] = c['longitude']
         cat['age'] = randint(0,20)
-        cat['name'] = names[randint(0,len(names) - 1)]
+        cat['name'] = secrets.choice(names)
         cat1 = Cat(name=cat['name'], photo=cat['url'], breed=cat['breed'], age=cat['age'], latitude=cat['latitude'], longitude=cat['longitude'])
         cat1.save()
         types.append(cat)
