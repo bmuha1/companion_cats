@@ -6,14 +6,18 @@ from random import randint
 
 
 def home(request):
-    context = {
-        'cats': Cat.objects.all()
-    }
-    return render(request, 'cats/home.html', context)
+    return render(request, 'cats/home.html')
 
 
 def about(request):
     return render(request, 'cats/about.html', {'title': 'About'})
+
+
+def all(request):
+    context = {
+        'cats': Cat.objects.all()
+    }
+    return render(request, 'cats/home.html', context)
 
 
 def random(request):
@@ -31,6 +35,7 @@ def random(request):
         'cats': types
     }
     return render(request, 'cats/random.html', context)
+
 
 def add(request):
     types = []
@@ -336,6 +341,3 @@ def add(request):
         'cats': types,
     }
     return render(request, 'cats/random.html', context)
-
-    # cat1 = Cat(name='Brent',photo='blank',age=5,breed='human',latitude=0,longitude=0)
-    # cat1.save()
