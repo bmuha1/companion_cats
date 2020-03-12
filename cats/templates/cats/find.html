@@ -1,5 +1,28 @@
 {% extends "cats/base.html" %} {% block content %}
 <h1>Find a Cat</h1>
-{% for breed in breeds %}
-<p>{{ breed }}</p>
-{% endfor %} {% endblock content %}
+
+<form>
+    <label for="breed">Choose a breed:</label>
+    <select id="breed">
+        <option value="all">All Breeds</option>
+        {% for breed in breeds %}
+            <option value="{{ breed }}">{{ breed }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="age">Choose an age range:</label>
+    <select id="age">
+        <option value="all">All Ages</option>
+        <option value="0">0 - 2</option>
+        <option value="3">3 - 5</option>
+        <option value="6">6 - 9</option>
+        <option value="10">10 - 12</option>
+        <option value="13">13 - 16</option>
+        <option value="17">17+</option>
+    </select>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+{% endblock content %}

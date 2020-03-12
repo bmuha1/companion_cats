@@ -3,6 +3,7 @@ from .models import Cat
 import requests
 import secrets
 from random import randint
+from math import sin, cos, radians, degrees, acos
 
 
 def home(request):
@@ -29,8 +30,33 @@ def all(request):
     return render(request, 'cats/home.html', context)
 
 
+def cat(request, cat_id):
+    cat = Cat.objects.get(id=cat_id)
+    '''
+    latitude = cat.latitude
+    longitude = cat.longitude
+    '''
+    cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+
+    context = {
+        'cat': cat
+    }
+    return render(request, 'cats/cat.html', context)
+
+
 def about(request):
     return render(request, 'cats/about.html', {'title': 'About'})
+
+
+def calc_dist(lat_a, long_a, lat_b, long_b):
+    lat_a = radians(lat_a)
+    lat_b = radians(lat_b)
+    long_diff = radians(long_a - long_b)
+    distance = (sin(lat_a) * sin(lat_b) +
+                cos(lat_a) * cos(lat_b) * cos(long_diff))
+    resToMile = degrees(acos(distance)) * 69.09
+    resToMt = resToMile / 0.00062137119223733
+    return resToMt
 
 
 def random(request):
