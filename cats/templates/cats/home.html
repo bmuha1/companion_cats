@@ -3,7 +3,7 @@
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8">
-            {% for cat in cats|dictsort:"name" %}
+            {% for cat in cats|dictsort:"id" %}
             <article class="media content-section">
                 <div class="media-body">
                     <p class="article-content"><img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"></p>

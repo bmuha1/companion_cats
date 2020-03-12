@@ -32,12 +32,7 @@ def all(request):
 
 def cat(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
-    '''
-    latitude = cat.latitude
-    longitude = cat.longitude
-    '''
     cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
-
     context = {
         'cat': cat
     }
@@ -48,6 +43,7 @@ def about(request):
     return render(request, 'cats/about.html', {'title': 'About'})
 
 
+""" This function is taken from here: https://stackoverflow.com/questions/4716017/django-how-can-i-find-the-distance-between-two-locations/4716690#4716690 """
 def calc_dist(lat_a, long_a, lat_b, long_b):
     lat_a = radians(lat_a)
     lat_b = radians(lat_b)
