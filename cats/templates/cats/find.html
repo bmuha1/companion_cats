@@ -1,0 +1,5 @@
+{% extends "cats/base.html" %} {% block content %}
+<h1>Find a Cat</h1>
+{% for breed in breeds %}
+<p>{{ breed }}</p>
+{% endfor %} {% endblock content %}
