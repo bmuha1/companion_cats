@@ -9,8 +9,17 @@ def home(request):
     return render(request, 'cats/home.html')
 
 
-def about(request):
-    return render(request, 'cats/about.html', {'title': 'About'})
+def find(request):
+    breeds = []
+    all = Cat.objects.all()
+    for cat in all:
+        breeds.append(cat.breed)
+    breeds = list(dict.fromkeys(breeds))
+    breeds.sort()
+    context = {
+        'breeds': breeds
+    }
+    return render(request, 'cats/find.html', context)
 
 
 def all(request):
@@ -18,6 +27,10 @@ def all(request):
         'cats': Cat.objects.all()
     }
     return render(request, 'cats/home.html', context)
+
+
+def about(request):
+    return render(request, 'cats/about.html', {'title': 'About'})
 
 
 def random(request):
