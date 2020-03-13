@@ -3,21 +3,64 @@ from .models import Cat
 import requests
 import secrets
 from random import randint
+from math import sin, cos, radians, degrees, acos
 
 
 def home(request):
     return render(request, 'cats/home.html')
 
 
+def find(request):
+    breeds = []
+    all = Cat.objects.all()
+    for cat in all:
+        breeds.append(cat.breed)
+    breeds = list(dict.fromkeys(breeds))
+    breeds.sort()
+    context = {
+        'breeds': breeds
+    }
+    return render(request, 'cats/find.html', context)
+
+
+def all(request):
+    cats = Cat.objects.all()
+    for cat in cats:
+        cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+    context = {
+        'cats': cats
+    }
+
+    return render(request, 'cats/home.html', context)
+
+
+def cat(request, cat_id):
+    cat = Cat.objects.get(id=cat_id)
+    cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+    if cat.distance > 1:
+        cat.mode = 'driving'
+    else:
+        cat.mode = 'walking'
+    context = {
+        'cat': cat
+    }
+    return render(request, 'cats/cat.html', context)
+
+
 def about(request):
     return render(request, 'cats/about.html', {'title': 'About'})
 
 
-def all(request):
-    context = {
-        'cats': Cat.objects.all()
-    }
-    return render(request, 'cats/home.html', context)
+""" This function is taken from here: https://stackoverflow.com/questions/4716017/django-how-can-i-find-the-distance-between-two-locations/4716690#4716690 """
+def calc_dist(lat_a, long_a, lat_b, long_b):
+    lat_a = radians(lat_a)
+    lat_b = radians(lat_b)
+    long_diff = radians(long_a - long_b)
+    distance = (sin(lat_a) * sin(lat_b) +
+                cos(lat_a) * cos(lat_b) * cos(long_diff))
+    resToMile = degrees(acos(distance)) * 69.09
+    # resToMt = resToMile / 0.00062137119223733
+    return resToMile
 
 
 def random(request):
