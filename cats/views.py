@@ -24,15 +24,23 @@ def find(request):
 
 
 def all(request):
+    cats = Cat.objects.all()
+    for cat in cats:
+        cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
     context = {
-        'cats': Cat.objects.all()
+        'cats': cats
     }
+
     return render(request, 'cats/home.html', context)
 
 
 def cat(request, cat_id):
     cat = Cat.objects.get(id=cat_id)
     cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+    if cat.distance > 1:
+        cat.mode = 'driving'
+    else:
+        cat.mode = 'walking'
     context = {
         'cat': cat
     }
@@ -51,8 +59,8 @@ def calc_dist(lat_a, long_a, lat_b, long_b):
     distance = (sin(lat_a) * sin(lat_b) +
                 cos(lat_a) * cos(lat_b) * cos(long_diff))
     resToMile = degrees(acos(distance)) * 69.09
-    resToMt = resToMile / 0.00062137119223733
-    return resToMt
+    # resToMt = resToMile / 0.00062137119223733
+    return resToMile
 
 
 def random(request):

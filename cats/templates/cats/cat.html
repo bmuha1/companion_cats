@@ -1,7 +1,7 @@
 {% extends "cats/base.html" %} {% block content %}
 
 <main role="main" class="container">
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <article class="media content-section">
                 <div class="media-body">
@@ -10,9 +10,7 @@
                     <h4>
                         <b>Age:</b> {{ cat.age }}<br>
                         <b>Breed:</b> {{ cat.breed }}<br>
-                        <b>Location:</b> {{ cat.latitude }}, {{ cat.longitude }}<br>
-                        <b>Distance:</b> {{ cat.distance }}<br>
-                        <b>Available:</b> {{ cat.available }}
+                        <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
                     </h4>
                 </div>
             </article>
@@ -23,7 +21,8 @@
 <p align="center">
     <iframe height=480 width=80% src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyD1VCRPNA6NCmy_CH72LmiexTlEjOaYNPA
     &origin=37.781975,-122.407448
-    &destination={{ cat.latitude }},{{ cat.longitude }}" allowfullscreen>
+    &destination={{ cat.latitude }},{{ cat.longitude }}
+    &mode={{ cat.mode }}" allowfullscreen>
      </iframe>
 </p>
 
