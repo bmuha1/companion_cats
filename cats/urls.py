@@ -6,7 +6,8 @@ urlpatterns = [
     path('about/', views.about, name='cats-about'),
     path('all/', views.all, name='cats-all'),
     path('find/', views.find, name='cats-find'),
-    path('cat/<cat_id>', views.cat, name='cats-cat')
+    path('find/<int:cat_age>/<cat_breed>', views.filter, name='cats-filter'),
+    path('cat/<int:cat_id>', views.cat, name='cats-cat')
     
     # path('random/', views.random, name='cats-random'),
     # path('add/', views.add, name='cats-add')
