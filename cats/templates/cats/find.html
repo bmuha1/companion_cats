@@ -1,27 +1,52 @@
 {% extends "cats/base.html" %} {% block content %}
 <center>
-    <h1>Find a Cat</h1>
-
-    <form>
+    <form action="/find" method="GET">
         <label for="breed">Choose a breed:</label>
-        <select id="breed">
+        <select name="breed">
         <option value="all">All Breeds</option>
         {% for breed in breeds %}
-            <option value="{{ breed }}">{{ breed }}</option>
+        <option value="{{ breed }}"{% if request.GET.breed == breed %} selected="selected"{% endif %}>{{ breed }}</option>
         {% endfor %}
-    </select>
+        </select>
 
         <label for="age">Choose an age range:</label>
-        <select id="age">
+        <select name="age">
         <option value=100>All Ages</option>
-        <option value=0>0 - 2</option>
-        <option value=3>3 - 5</option>
-        <option value=6>6 - 9</option>
-        <option value=10>10 - 12</option>
-        <option value=13>13 - 16</option>
-        <option value=17>17+</option>
-    </select>
+        <option value=0 {% if request.GET.age == '0' %} selected="selected"{% endif %}>0 - 2</option>
+        <option value=3 {% if request.GET.age == '3' %} selected="selected"{% endif %}>3 - 5</option>
+        <option value=6 {% if request.GET.age == '6' %} selected="selected"{% endif %}>6 - 9</option>
+        <option value=10 {% if request.GET.age == '10' %} selected="selected"{% endif %}>10 - 12</option>
+        <option value=13 {% if request.GET.age == '13' %} selected="selected"{% endif %}>13 - 16</option>
+        <option value=17 {% if request.GET.age == '17' %} selected="selected"{% endif %}>17+</option>
+        </select>
 
+        <button>Search</button>
     </form>
+
+    {% if request.GET.breed %}
+    <main role="main" class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {% for cat in cats|dictsort:"distance" %} {% if request.GET.breed == cat.breed or request.GET.breed == 'all' %} {% if request.GET.age == cat.age_range or request.GET.age == '100' %}
+                <article class="media content-section">
+                    <div class="media-body">
+                        <p class="article-content">
+                            <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
+                                <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
+                        </p>
+                        <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
+                        <h4>
+                            <b>Age:</b> {{ cat.age }}<br>
+                            <b>Breed:</b> {{ cat.breed }}<br>
+                            <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
+                            <b>Available:</b> {{ cat.available }}
+                        </h4>
+                    </div>
+                </article>
+                {% endif %} {% endif %} {% endfor %}
+            </div>
+        </div>
+    </main>
+    {% endif %}
 </center>
 {% endblock content %}
