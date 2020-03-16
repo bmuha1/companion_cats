@@ -23,45 +23,29 @@ def all(request):
 
 def find(request):
     breeds = []
-    all = Cat.objects.all()
-    for cat in all:
+    cats = Cat.objects.all()
+    for cat in cats:
+        cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+        if cat.age <= 2:
+            cat.age_range = '0'
+        elif cat.age >= 3 and cat.age <= 5:
+            cat.age_range = '3'
+        elif cat.age >= 6 and cat.age <= 9:
+            cat.age_range = '6'
+        elif cat.age >= 10 and cat.age <= 12:
+            cat.age_range = '10'
+        elif cat.age >= 13 and cat.age <= 16:
+            cat.age_range = '13'
+        else:
+            cat.age_range = '17'
         breeds.append(cat.breed)
     breeds = list(dict.fromkeys(breeds))
     breeds.sort()
     context = {
-        'breeds': breeds
+        'breeds': breeds,
+        'cats': cats
     }
     return render(request, 'cats/find.html', context)
-
-
-def filter(request, cat_age, cat_breed):
-    cats = Cat.objects.all()
-    filtered_cats = []
-    for cat in cats:
-        if cat_age == 100 and cat.breed == cat_breed:
-            filtered_cats.append(cat)
-            continue
-        if cat.age <= 2:
-            cat.age_range = 0
-        elif cat.age >= 3 and cat.age <= 5:
-            cat.age_range = 3
-        elif cat.age >= 6 and cat.age <= 9:
-            cat.age_range = 6
-        elif cat.age >= 10 and cat.age <= 12:
-            cat.age_range = 10
-        elif cat.age >= 13 and cat.age <= 16:
-            cat.age_range = 13
-        elif cat.age >= 17:
-            cat.age_range = 17
-        if cat.age_range == cat_age:
-            if cat_breed == 'all' or cat.breed == cat_breed:
-                filtered_cats.append(cat)
-    for cat in filtered_cats:
-        cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
-    context = {
-        'cats': filtered_cats
-    }
-    return render(request, 'cats/home.html', context)
 
 
 def cat(request, cat_id):
