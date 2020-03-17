@@ -100,3 +100,17 @@ a.article-title:hover {
     margin-left: auto;
     margin-right: auto;
 }
+
+.borrow {
+    background-color: #ff7e73;
+    border: none;
+    color: #ffffff;
+    padding: 15px 25px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.borrow:hover {
+    background-color: #776464;
+}
