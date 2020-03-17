@@ -1,27 +1,68 @@
 {% extends "cats/base.html" %} {% block content %}
-<main role="main" class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            {% for cat in cats|dictsort:"distance" %}
-            <article class="media content-section">
-                <div class="media-body">
-                    <p class="article-content">
-                        <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
-                            <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
-                    </p>
-                    <h2><a class="article-title" href="{% url 'cats-cat' cat_id=cat.id %}">{{ cat.name }}</a></h2>
-                    <h4>
-                        <b>Age:</b> {{ cat.age }}<br>
-                        <b>Breed:</b> {{ cat.breed }}<br>
-                        <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
-                        <b>Available:</b> {{ cat.available }}
-                    </h4>
-                    <center><a href="{% url 'cats-cat' cat_id=cat.id %}"><button class="borrow" type="button">Borrow {{ cat.name }}</button></a></center>
+<center>
+    <header>
+        <img src="https://i.imgur.com/MxKTn3Q.png" alt="Companion Cats" class="header-img" width=873 height=488>
+    </header>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <section>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5">
+                            <img src="https://i.imgur.com/THEbmrI.png" alt="Find a Cat" class="header-img" width=576 height=360>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Find a Cat</h2>
+                            <p>Find just the cat you're looking for! Cats can be filtered by age and breed.</p>
+                        </div>
+                    </div>
                 </div>
-            </article>
-            {% endfor %}
+            </section>
         </div>
-    </div>
-</main>
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <section>
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <img src="https://i.imgur.com/3fQlDIv.png" alt="All Cats" class="header-img" width=576 height=360>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <h2 class="display-4">All Cats</h2>
+                            <p>Browse our entire collection of cats available. 1300+ cats located all over the San Francisco Bay Area!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <article class="media content-section">
+        <div class="media-body">
+            <section>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5">
+                            <img src="https://i.imgur.com/ONnbbSJ.png" alt="Borrow a Cat" class="header-img" width=576 height=360>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 order-lg-1">
+                        <div class="p-5">
+                            <h2 class="display-4">Borrow a Cat</h2>
+                            <p>Once you've found the perfect cat for you, get directions and go pick it up!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </article>
+</center>
 
 {% endblock content %}

@@ -101,6 +101,14 @@ a.article-title:hover {
     margin-right: auto;
 }
 
+.header-img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .borrow {
     background-color: #ff7e73;
     border: none;

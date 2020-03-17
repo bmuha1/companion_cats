@@ -18,7 +18,7 @@ def all(request):
         'cats': cats
     }
 
-    return render(request, 'cats/home.html', context)
+    return render(request, 'cats/display.html', context)
 
 
 def find(request):

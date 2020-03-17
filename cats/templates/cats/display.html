@@ -1,0 +1,27 @@
+{% extends "cats/base.html" %} {% block content %}
+<main role="main" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% for cat in cats|dictsort:"distance" %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <p class="article-content">
+                        <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
+                            <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
+                    </p>
+                    <h2><a class="article-title" href="{% url 'cats-cat' cat_id=cat.id %}">{{ cat.name }}</a></h2>
+                    <h4>
+                        <b>Age:</b> {{ cat.age }}<br>
+                        <b>Breed:</b> {{ cat.breed }}<br>
+                        <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
+                        <b>Available:</b> {{ cat.available }}
+                    </h4>
+                    <center><a href="{% url 'cats-cat' cat_id=cat.id %}"><button class="borrow" type="button">Borrow {{ cat.name }}</button></a></center>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+
+{% endblock content %}
