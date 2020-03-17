@@ -22,31 +22,30 @@
 
         <button>Search</button>
     </form>
-
-    {% if request.GET.breed %}
-    <main role="main" class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                {% for cat in cats|dictsort:"distance" %} {% if request.GET.breed == cat.breed or request.GET.breed == 'all' %} {% if request.GET.age == cat.age_range or request.GET.age == '100' %}
-                <article class="media content-section">
-                    <div class="media-body">
-                        <p class="article-content">
-                            <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
-                                <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
-                        </p>
-                        <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
-                        <h4>
-                            <b>Age:</b> {{ cat.age }}<br>
-                            <b>Breed:</b> {{ cat.breed }}<br>
-                            <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
-                            <b>Available:</b> {{ cat.available }}
-                        </h4>
-                    </div>
-                </article>
-                {% endif %} {% endif %} {% endfor %}
-            </div>
-        </div>
-    </main>
-    {% endif %}
 </center>
-{% endblock content %}
+
+{% if request.GET.breed %}
+<main role="main" class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% for cat in cats|dictsort:"distance" %} {% if request.GET.breed == cat.breed or request.GET.breed == 'all' %} {% if request.GET.age == cat.age_range or request.GET.age == '100' %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <p class="article-content">
+                        <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
+                            <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
+                    </p>
+                    <h2><a class="article-title" href="{% url 'cats-cat' cat_id=cat.id %}">{{ cat.name }}</a></h2>
+                    <h4>
+                        <b>Age:</b> {{ cat.age }}<br>
+                        <b>Breed:</b> {{ cat.breed }}<br>
+                        <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
+                        <b>Available:</b> {{ cat.available }}
+                    </h4>
+                </div>
+            </article>
+            {% endif %} {% endif %} {% endfor %}
+        </div>
+    </div>
+</main>
+{% endif %} {% endblock content %}

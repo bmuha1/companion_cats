@@ -9,7 +9,7 @@
                         <a class="nav-item nav-link" href="{% url 'cats-cat' cat_id=cat.id %}">
                             <img class="image" src="{{ cat.photo }}" alt="{{ cat.name }}"> </a>
                     </p>
-                    <h2><a class="article-title" href="#">{{ cat.name }}</a></h2>
+                    <h2><a class="article-title" href="{% url 'cats-cat' cat_id=cat.id %}">{{ cat.name }}</a></h2>
                     <h4>
                         <b>Age:</b> {{ cat.age }}<br>
                         <b>Breed:</b> {{ cat.breed }}<br>
