@@ -26,7 +26,7 @@ SECRET_KEY = ')6#5!ee2w&(3!w3^e$x4b0ux253p-$+4fgp6!a0l#mrrqtolx*'
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['companion-cats.herokuapp.com']
 
