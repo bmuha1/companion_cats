@@ -40,7 +40,7 @@
                         <b>Age:</b> {{ cat.age }}<br>
                         <b>Breed:</b> {{ cat.breed }}<br>
                         <b>Distance:</b> {{ cat.distance|floatformat }} miles<br>
-                        <b>Available:</b> {{ cat.available }}
+                        <b>Available:</b> {% if cat.available %}Yes{% else %}No{% endif %}
                     </h4>
                     <center><a href="{% url 'cats-cat' cat_id=cat.id %}"><button class="borrow" type="button">Borrow {{ cat.name }}</button></a></center>
                 </div>
