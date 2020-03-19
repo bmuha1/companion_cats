@@ -15,7 +15,8 @@ def all(request):
     for cat in cats:
         cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
     context = {
-        'cats': cats
+        'cats': cats,
+        'title': 'All Cats'
     }
 
     return render(request, 'cats/display.html', context)
@@ -43,7 +44,8 @@ def find(request):
     breeds.sort()
     context = {
         'breeds': breeds,
-        'cats': cats
+        'cats': cats,
+        'title': 'Find a Cat'
     }
     return render(request, 'cats/find.html', context)
 
@@ -56,7 +58,8 @@ def cat(request, cat_id):
     else:
         cat.mode = 'walking'
     context = {
-        'cat': cat
+        'cat': cat,
+        'title': 'Borrow a Cat'
     }
     return render(request, 'cats/cat.html', context)
 
