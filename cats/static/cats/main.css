@@ -137,6 +137,10 @@ a.article-title:hover {
     text-align: justify;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .about-img {
     border-radius: 50%;
 }
