@@ -131,3 +131,12 @@ a.article-title:hover {
 .borrow:hover {
     background-color: #776464;
 }
+
+.about {
+    width: 350px;
+    text-align: justify;
+}
+
+.about-img {
+    border-radius: 50%;
+}
