@@ -7,10 +7,12 @@ from math import sin, cos, radians, degrees, acos
 
 
 def home(request):
+    # Landing page
     return render(request, 'cats/home.html')
 
 
 def all(request):
+    # Display all cats in the database
     cats = Cat.objects.all()
     for cat in cats:
         cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
@@ -23,9 +25,11 @@ def all(request):
 
 
 def find(request):
+    # Load all cats from database to be filtered by breed and age
     breeds = []
     cats = Cat.objects.all()
     for cat in cats:
+        # Start distance is the location of Holberton SF campus
         cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
         if cat.age <= 2:
             cat.age_range = '0'
@@ -51,8 +55,10 @@ def find(request):
 
 
 def cat(request, cat_id):
+    # Display info and a map with directions to a single cat
     cat = Cat.objects.get(id=cat_id)
     cat.distance = calc_dist(37.781975, -122.407448, float(cat.latitude), float(cat.longitude))
+    # Give walking directions for cats under 1 mile away; driving directions otherwise
     if cat.distance > 1:
         cat.mode = 'driving'
     else:
@@ -65,11 +71,13 @@ def cat(request, cat_id):
 
 
 def about(request):
+    # About page
     return render(request, 'cats/about.html', {'title': 'About'})
 
 
 """ This function is taken from here: https://stackoverflow.com/questions/4716017/django-how-can-i-find-the-distance-between-two-locations/4716690#4716690 """
 def calc_dist(lat_a, long_a, lat_b, long_b):
+    # Calculate the distance in miles between two GPS coordinates
     lat_a = radians(lat_a)
     lat_b = radians(lat_b)
     long_diff = radians(long_a - long_b)
@@ -81,6 +89,7 @@ def calc_dist(lat_a, long_a, lat_b, long_b):
 
 
 def random(request):
+    # Get all breeds available on Cat API and randomly select and display one of each breed
     types = []
     
     breeds = requests.get('https://api.thecatapi.com/v1/breeds').json()
@@ -98,6 +107,8 @@ def random(request):
 
 
 def add(request):
+    # Add cats to the database for each GPS coordinate provided
+    # Running this method in production (with more coordinates provided) generated the 1300+ cats currently in the database
     types = []
 
     coordinates = [
