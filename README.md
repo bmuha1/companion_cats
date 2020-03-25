@@ -4,11 +4,13 @@
 
 ## Introduction
 
-The site is deployed on Heroku: https://companion-cats.herokuapp.com/
+All students at Holberton School are tasked with completing a capstone project at the end of the foundations year. For my project, I created Companion Cats, a platform to borrow cats built in Python utilizing various APIs. The purpose of the project is to demonstrate my ability to create a full stack web app after completing nine months of projects at Holberton. I wanted to challenge myself to create a responsive website on my own. I completed both the front end and the back end. We were given two weeks to come up with an idea and conduct research, two weeks to implement the project, and one week to create a landing page and presentation.
 
-I wrote a blog post about this project: [The Making of Companion Cats](https://medium.com/@bmuha1/the-making-of-companion-cats-3311a967b17f)
+The site is deployed [on Heroku](https://companion-cats.herokuapp.com/).
 
-My LinkedIn page is available here: https://www.linkedin.com/in/brentmuha/
+I wrote a blog post about this project: [The Making of Companion Cats](https://medium.com/@bmuha1/the-making-of-companion-cats-3311a967b17f).
+
+My LinkedIn page is [available here](https://www.linkedin.com/in/brentmuha/).
 
 ## Inspiration
 
